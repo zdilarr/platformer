@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c7xrnhplsxoeb"]
+[gd_scene load_steps=23 format=3 uid="uid://c7xrnhplsxoeb"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_a8scn"]
 [ext_resource type="Texture2D" uid="uid://b7600x0gu833s" path="res://Sunny-land-files/Sunny-land-files/Graphical Assets/sprites/player/hurt/player-hurt-1.png" id="1_oxiok"]
@@ -83,6 +83,26 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_bo5kl"]
+resource_name = "jump"
+
+[sub_resource type="Animation" id="Animation_o6b6w"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_mrdr0"]
+resource_name = "run"
+
+[sub_resource type="Animation" id="Animation_b7qjr"]
+resource_name = "death"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yx3hv"]
+_data = {
+"death": SubResource("Animation_b7qjr"),
+"idle": SubResource("Animation_o6b6w"),
+"jump": SubResource("Animation_bo5kl"),
+"run": SubResource("Animation_mrdr0")
+}
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_a8scn")
 
@@ -91,4 +111,14 @@ shape = SubResource("CapsuleShape2D_okhf6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cqmwj")
-animation = &"death"
+animation = &"run"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.6, 1.6)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yx3hv")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]

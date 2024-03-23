@@ -39,7 +39,7 @@ shape = SubResource("RectangleShape2D_na0xd")
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = 204.0
-offset_top = 279.0
+offset_top = 270.0
 offset_right = 244.0
-offset_bottom = 319.0
+offset_bottom = 310.0
 scale = Vector2(18.5155, 2.73692)
