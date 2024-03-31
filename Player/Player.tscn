@@ -28,7 +28,7 @@ animations = [{
 "texture": ExtResource("2_ytwv1")
 }],
 "loop": true,
-"name": &"death",
+"name": &"Death",
 "speed": 5.0
 }, {
 "frames": [{
@@ -45,18 +45,18 @@ animations = [{
 "texture": ExtResource("6_qfy4b")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"Idle",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_jd8mk")
+"texture": ExtResource("8_g6i8k")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_g6i8k")
+"texture": ExtResource("7_jd8mk")
 }],
 "loop": true,
-"name": &"jump",
+"name": &"Jump",
 "speed": 5.0
 }, {
 "frames": [{
@@ -79,21 +79,21 @@ animations = [{
 "texture": ExtResource("14_xjane")
 }],
 "loop": true,
-"name": &"run",
+"name": &"Run",
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_bo5kl"]
-resource_name = "jump"
+[sub_resource type="Animation" id="Animation_b7qjr"]
+resource_name = "death"
 
 [sub_resource type="Animation" id="Animation_o6b6w"]
 resource_name = "idle"
 
+[sub_resource type="Animation" id="Animation_bo5kl"]
+resource_name = "jump"
+
 [sub_resource type="Animation" id="Animation_mrdr0"]
 resource_name = "run"
-
-[sub_resource type="Animation" id="Animation_b7qjr"]
-resource_name = "death"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yx3hv"]
 _data = {
@@ -110,8 +110,10 @@ script = ExtResource("1_a8scn")
 shape = SubResource("CapsuleShape2D_okhf6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_cqmwj")
-animation = &"run"
+animation = &"Run"
+frame_progress = 0.0554085
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.6, 1.6)

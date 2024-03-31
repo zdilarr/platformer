@@ -15,7 +15,8 @@ size = Vector2(678.721, 17.8146)
 
 [node name="Player" parent="." instance=ExtResource("1_adxql")]
 position = Vector2(423, 113)
-scale = Vector2(1.49652, -1.68399)
+rotation = 3.12291
+scale = Vector2(-2.02287, -1.68399)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
