@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://32do5rclr8db" path="res://Sunny-land-files/Sunny-land-files/Graphical Assets/environment/Background/back.png" id="2_bwaha"]
 [ext_resource type="Texture2D" uid="uid://y5w28244n81" path="res://sunny-land-phaser-project/sunny-land/assets/environment/tileset.png" id="2_ikd5b"]
 [ext_resource type="PackedScene" uid="uid://m6csadch14d3" path="res://frog.tscn" id="5_h1l1k"]
-[ext_resource type="PackedScene" uid="uid://b3a6k8qoj5c0d" path="res://Collectables/cherry.tscn" id="6_cji0d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p8tk0"]
 texture = ExtResource("2_ikd5b")
@@ -432,6 +431,21 @@ func _process(delta):
 	text = \"Gold: \" + str(Game.gold)
 "
 
+[sub_resource type="GDScript" id="GDScript_0o0nq"]
+script/source = "extends Node2D
+
+var cherry = preload(\"res://Collectables/cherry.tscn\")
+
+
+func _on_timer_timeout():
+	var cherryTemp = cherry.instantiate()
+	var rng = RandomNumberGenerator.new()
+	var randint_x = rng.randi_range(250, 700)
+	var randint_y = rng.randi_range(20, 110)
+	cherryTemp.position = Vector2(randint_x, randint_y)
+	add_child(cherryTemp)
+"
+
 [node name="World" type="Node2D"]
 position = Vector2(74, 142)
 
@@ -448,15 +462,14 @@ position = Vector2(-18, -15)
 motion_mirroring = Vector2(1152, 0)
 
 [node name="Back" type="Sprite2D" parent="BG/ParallaxLayer"]
-position = Vector2(576, 324)
+position = Vector2(591, 338)
 scale = Vector2(3, 2.7)
 texture = ExtResource("2_bwaha")
-metadata/_edit_lock_ = true
 
 [node name="Player" type="Node2D" parent="."]
 
 [node name="Player" parent="Player" instance=ExtResource("1_adxql")]
-position = Vector2(384, 59)
+position = Vector2(440, 59)
 rotation = -0.0186826
 scale = Vector2(2.02287, 1.68399)
 
@@ -500,6 +513,10 @@ text = "Gold"
 script = SubResource("GDScript_kstb4")
 
 [node name="Collectables" type="Node2D" parent="."]
+script = SubResource("GDScript_0o0nq")
 
-[node name="Cherry" parent="Collectables" instance=ExtResource("6_cji0d")]
-position = Vector2(194, 135)
+[node name="Timer" type="Timer" parent="Collectables"]
+wait_time = 1.758
+autostart = true
+
+[connection signal="timeout" from="Collectables/Timer" to="Collectables" method="_on_timer_timeout"]
